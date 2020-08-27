@@ -15,6 +15,8 @@ Step 3: Run "runs/main.m".
 
 The variable "output_line_number" has already been set to "1003.10", which is the line number to be filtered. Two figures demonstraing the performance of the filtering should be generated, and the variable "y_filtered" is the output filtered data.
 
+The Deep Learning Toolbox of Matlab is required.
+
 ## Team members
 Ling-Wei Kong, Cheng-Zhen Wang, and Ying-Cheng Lai
 
