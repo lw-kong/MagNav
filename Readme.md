@@ -1,6 +1,6 @@
 # Signal Enhancement for Magnetic Navigation Challenge Problem
 
-This is a repository for the signal enhancement for magnetic navigation (MagNav) challenge problem, which was introduced at JuliaCon 2020.
+This is a repository for the signal enhancement for magnetic navigation (MagNav) challenge problem (https://github.com/MIT-AI-Accelerator/MagNav.jl), which was introduced at JuliaCon 2020.
 
 Please refer to "Introduction.pdf" for a brief introduction of our methods and some examples of our results. 
 
@@ -20,6 +20,5 @@ The Deep Learning Toolbox of Matlab is required.
 ## Team members
 Ling-Wei Kong, Cheng-Zhen Wang, and Ying-Cheng Lai
 
-School of Electrical, Computer and Energy Engineering, Arizona
-
-State University, Tempe, AZ 85287-5706
+School of Electrical, Computer and Energy Engineering
+Arizona State University, Tempe, AZ 85287-5706
