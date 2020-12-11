@@ -21,4 +21,5 @@ The Deep Learning Toolbox of Matlab is required.
 Ling-Wei Kong, Cheng-Zhen Wang, and Ying-Cheng Lai
 
 School of Electrical, Computer and Energy Engineering
+
 Arizona State University, Tempe, AZ 85287-5706
