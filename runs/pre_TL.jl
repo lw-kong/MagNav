@@ -9,14 +9,6 @@ gr()
 
 
 
-
-# output line for filtering
-output_line_number = 1003.10
-
-
-
-
-
 # get flight data
 data_dir = joinpath(@__DIR__, "..", "data")
 #data_dir  = MagNav.data_dir()
@@ -81,12 +73,10 @@ mag_5_c = xyz_data.UNCOMPMAG5 - A*TL_coef_5 .+ mean(A*TL_coef_5)
 calcIGRF = xyz_data.DCMAG1 - xyz_data.IGRFMAG1
 
 #
-i1         = findfirst(xyz_data.LINE .== output_line_number)
-i2         = findlast( xyz_data.LINE .== output_line_number)
 save_filename = string("data_TL.h5")
 
-h5write(save_filename, "tt",xyz_data.TIME[i1:i2])
-h5write(save_filename, "slg",xyz_data.IGRFMAG1[i1:i2])
-h5write(save_filename, "mag_3_c",mag_3_c[i1:i2]-xyz_data.DIURNAL[i1:i2]-calcIGRF[i1:i2])
-h5write(save_filename, "mag_4_c",mag_4_c[i1:i2]-xyz_data.DIURNAL[i1:i2]-calcIGRF[i1:i2])
-h5write(save_filename, "mag_5_c",mag_5_c[i1:i2]-xyz_data.DIURNAL[i1:i2]-calcIGRF[i1:i2])
+h5write(save_filename, "tt",xyz_data.TIME)
+h5write(save_filename, "slg",xyz_data.IGRFMAG1)
+h5write(save_filename, "mag_3_c",mag_3_c-xyz_data.DIURNAL-calcIGRF)
+h5write(save_filename, "mag_4_c",mag_4_c-xyz_data.DIURNAL-calcIGRF)
+h5write(save_filename, "mag_5_c",mag_5_c-xyz_data.DIURNAL-calcIGRF)
