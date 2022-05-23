@@ -1,6 +1,6 @@
 # Signal Enhancement for Magnetic Navigation Challenge Problem
 
-This is a repository for the signal enhancement for magnetic navigation challenge problem ([MagNav,](https://github.com/MIT-AI-Accelerator/MagNav.jl) [ an older version](https://github.com/lw-kong/MagNav_2020.jl)), which was introduced at JuliaCon 2020.
+This is a repository for the signal enhancement for magnetic navigation challenge problem ([MagNav](https://github.com/MIT-AI-Accelerator/MagNav.jl), and [an older version](https://github.com/lw-kong/MagNav_2020.jl)), which was introduced at JuliaCon 2020.
 
 Please refer to "Introduction.pdf" for a brief introduction of our methods and some examples of our results. 
 
