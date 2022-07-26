@@ -36,14 +36,11 @@ cp[:pass2] = 0.9  # second passband frequency [Hz]
 cp[:fs]    = 10.0 # sampling frequency [Hz]
 i1         = findfirst(cali_data.LINE .== 1002.02)
 i2         = findlast( cali_data.LINE .== 1002.02)
-TL_coef_1  = create_TL_coef(cali_data.FLUXB_X[i1:i2],
-                            cali_data.FLUXB_Y[i1:i2],
-                            cali_data.FLUXB_Z[i1:i2],
-                            cali_data.UNCOMPMAG1[i1:i2];cp...)
-TL_coef_2  = create_TL_coef(cali_data.FLUXB_X[i1:i2],
-                            cali_data.FLUXB_Y[i1:i2],
-                            cali_data.FLUXB_Z[i1:i2],
-                            cali_data.UNCOMPMAG2[i1:i2];cp...)
+#TL_coef_2  = create_TL_coef(cali_data.FLUXB_X[i1:i2],
+#                            cali_data.FLUXB_Y[i1:i2],
+#                            cali_data.FLUXB_Z[i1:i2],
+#                            cali_data.UNCOMPMAG2[i1:i2];cp...)
+# data quality of Mag 2 is low. Mag 2 is thus not used during the entire processing.
 TL_coef_3  = create_TL_coef(cali_data.FLUXB_X[i1:i2],
                             cali_data.FLUXB_Y[i1:i2],
                             cali_data.FLUXB_Z[i1:i2],
@@ -63,20 +60,22 @@ A = create_TL_Amat(xyz_data.FLUXB_X,
                    xyz_data.FLUXB_Z)
 
 # correct magnetometer measurements
-mag_1_c = xyz_data.UNCOMPMAG1 - A*TL_coef_1 .+ mean(A*TL_coef_1)
-mag_2_c = xyz_data.UNCOMPMAG2 - A*TL_coef_2 .+ mean(A*TL_coef_2)
-mag_3_c = xyz_data.UNCOMPMAG3 - A*TL_coef_3 .+ mean(A*TL_coef_3)
-mag_4_c = xyz_data.UNCOMPMAG4 - A*TL_coef_4 .+ mean(A*TL_coef_4)
-mag_5_c = xyz_data.UNCOMPMAG5 - A*TL_coef_5 .+ mean(A*TL_coef_5)
+#mag_2_c = xyz_data.UNCOMPMAG2 - (A*TL_coef_2 .- mean(A*TL_coef_2))
+mag_3_c = xyz_data.UNCOMPMAG3 - (A*TL_coef_3 .- mean(A*TL_coef_3))
+mag_4_c = xyz_data.UNCOMPMAG4 - (A*TL_coef_4 .- mean(A*TL_coef_4))
+mag_5_c = xyz_data.UNCOMPMAG5 - (A*TL_coef_5 .- mean(A*TL_coef_5))
 
 # IGRF offset
 calcIGRF = xyz_data.DCMAG1 - xyz_data.IGRFMAG1
+mag_3_c = mag_3_c-xyz_data.DIURNAL-calcIGRF
+mag_4_c = mag_4_c-xyz_data.DIURNAL-calcIGRF
+mag_5_c = mag_5_c-xyz_data.DIURNAL-calcIGRF
 
 #
 save_filename = string("data_TL.h5")
 
 h5write(save_filename, "tt",xyz_data.TIME)
 h5write(save_filename, "slg",xyz_data.IGRFMAG1)
-h5write(save_filename, "mag_3_c",mag_3_c-xyz_data.DIURNAL-calcIGRF)
-h5write(save_filename, "mag_4_c",mag_4_c-xyz_data.DIURNAL-calcIGRF)
-h5write(save_filename, "mag_5_c",mag_5_c-xyz_data.DIURNAL-calcIGRF)
+h5write(save_filename, "mag_3_c",mag_3_c)
+h5write(save_filename, "mag_4_c",mag_4_c)
+h5write(save_filename, "mag_5_c",mag_5_c)
