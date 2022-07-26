@@ -65,7 +65,7 @@ mag_3_c = xyz_data.UNCOMPMAG3 - (A*TL_coef_3 .- mean(A*TL_coef_3))
 mag_4_c = xyz_data.UNCOMPMAG4 - (A*TL_coef_4 .- mean(A*TL_coef_4))
 mag_5_c = xyz_data.UNCOMPMAG5 - (A*TL_coef_5 .- mean(A*TL_coef_5))
 
-# IGRF offset
+# IGRF (core field) correction & the diurnal (temporal variation) correction
 calcIGRF = xyz_data.DCMAG1 - xyz_data.IGRFMAG1
 mag_3_c = mag_3_c-xyz_data.DIURNAL-calcIGRF
 mag_4_c = mag_4_c-xyz_data.DIURNAL-calcIGRF
